@@ -1,0 +1,65 @@
+apply plugin: 'java'
+
+version = ''
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+            exclude '**/*_DEP.java'
+       }
+   }
+}
+dependencies {
+    compile files('libs/VDABCore.jar' )
+	compile files('libs/jnetpcap.jar' )
+ }
+ 
+ //Get dependencies from Maven central repository
+repositories {
+    mavenCentral()
+}
+
+// Fetch a fresh VDABCore from vdabtec.com
+task getVDABCore(type: GetFile) {
+    sourceUrl = 'http://vdabtec.com/vdab/products/VDABCore.jar'
+    target = file('libs/VDABCore.jar')
+}
+class GetFile extends DefaultTask {
+    @Input
+    String sourceUrl
+
+    @OutputFile
+    File target
+
+    @TaskAction
+    void download() {
+       ant.get(src: sourceUrl, dest: target)
+    }
+}
+tasks.compileJava.dependsOn([getVDABCore])
+
+task vdabPackage(dependsOn: [build]){
+	doLast {
+		def jarFiles = file('./libs').listFiles()
+		jarFiles.each {File nextFile ->
+		println ">>>>> Found needed jar file = $nextFile.name"
+		}
+		copy {
+			from 'libs'
+			from 'build/libs'
+			into 'pkg/ext'
+			exclude 'VDABCore.jar'
+		}
+		
+		copy {
+			from 'libs_dll'
+			into 'pkg/lib'
+		}
+
+		ant.zip(destfile: 'PKG_NetPcapNodes.zip'){
+			fileset (dir: 'pkg')
+		}
+	}
+}

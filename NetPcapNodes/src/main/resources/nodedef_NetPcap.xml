@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<nodedefs>
+<nodedef name="NetworkSource" class="vdab.extnodes.netpcap.NetworkSource">
+    <attr name="Group">Net</attr>
+	<attr name="ConsumedEventTypes">NONE</attr>
+    <attr name="PublishedEventTypes">Event</attr>
+    <attr name="NodeDescTemplate"> ${Protocol}: ${Address} </attr>
+    <attr name="NodeOverview" >Monitors the network using PCap libraries. Requires installation of that library.</attr>
+    <attr name="NodeQuality" >Prototype</attr>   
+    <datadef name="NetworkDevice">
+		<attr name="Category">Standard</attr>
+		<attr name="EditOrder" type="Integer">11</attr>
+		<attr name="Desc" >Picks the available network interface that will be used to monitor the network.</attr>
+	</datadef>  
+	<datadef name="Protocol">
+		<attr name="Category">Standard</attr>
+		<attr name="EditWhileRunning" type="Boolean">true</attr>
+		<attr name="Enum">IPProtocolType</attr>
+		<attr name="EditOrder" type="Integer">12</attr>
+		<attr name="Desc" >Picks the IP protocol that will be monitored.</attr>		
+	</datadef>
+    <datadef name="Address">
+		<attr name="Category">Standard</attr>
+		<attr name="EditWhileRunning" type="Boolean">true</attr>
+		<attr name="EditOrder" type="Integer">21</attr>
+		<attr name="Desc" >Selects monitoring of a specific address.</attr>		
+	</datadef>
+    <datadef name="Port">
+		<attr name="Category">Standard</attr>
+		<attr name="EditWhileRunning" type="Boolean">true</attr>
+		<attr name="EditOrder" type="Integer">22</attr>
+		<attr name="Desc" >Selects monitoring of a specific port.</attr>	
+	</datadef>
+	<datadef name="ContentLength">
+		<attr name="Category">Standard</attr>
+		<attr name="EditWhileRunning" type="Boolean">true</attr>
+		<attr name="EditOrder" type="Integer">23</attr>
+	</datadef>
+	<datadef name="Match">
+		<attr name="Category">Standard</attr>
+		<attr name="EditWhileRunning" type="Boolean">true</attr>
+		<attr name="EditOrder" type="Integer">31</attr>
+	</datadef>
+</nodedef>
+</nodedefs>
