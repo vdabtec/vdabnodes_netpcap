@@ -58,7 +58,7 @@ task vdabPackage(dependsOn: [build]){
 			into 'pkg/lib'
 		}
 
-		ant.zip(destfile: 'PKG_NetPcapNodes.zip'){
+		ant.zip(destfile: 'PKG_WINDOWS_NetPcapNodes.zip'){
 			fileset (dir: 'pkg')
 		}
 	}
