@@ -61,5 +61,6 @@ task vdabPackage(dependsOn: [build]){
 		ant.zip(destfile: 'PKG_WINDOWS_NetPcapNodes.zip'){
 			fileset (dir: 'pkg')
 		}
+		delete "libs/VDABCore.jar"
 	}
 }
