@@ -23,7 +23,7 @@ and selecting the <i>NetPcapNodes</i> package.
 A custom version can be built using Gradle following the direction below.
 
 * Clone or Download this project from Github.
-* Open a command windows from the <i>NetPcap</i> directory.
+* Open a command windows from the <i>NetPcapNodes</i> directory.
 * Build using Gradle: <pre>      gradle vdabPackage</pre>
 
 This builds a package zip file which contains the components that need to be deployed. These can be deployed by 
